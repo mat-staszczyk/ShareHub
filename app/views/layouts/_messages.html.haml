@@ -1,0 +1,6 @@
+- flash.each do |msg_type, msg|
+  %div{ class: "alert alert-#{msg_type}" }
+    %a{ href: "#", data: { dismiss: "alert" }, class: "close" }
+      ×
+    %ul
+      %li= msg
