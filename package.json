@@ -1,13 +1,49 @@
 {
   "name": "ShareHub",
   "private": true,
+  "scripts": {
+    "lint-staged": "$(yarn bin)/lint-staged"
+  },
+  "lint-staged": {
+    "config/webpack/**/*.js": [
+      "prettier --write",
+      "eslint",
+      "git add"
+    ],
+    "frontend/**/*.js": [
+      "prettier --write",
+      "eslint",
+      "git add"
+    ],
+    "frontend/**/*.css": [
+      "prettier --write",
+      "stylelint --fix",
+      "git add"
+    ]
+  },
+  "pre-commit": [
+    "lint-staged"
+  ],
   "dependencies": {
     "@rails/webpacker": "3.5",
     "bootstrap": "^4.1.1",
     "jquery": "^3.3.1",
+    "normalize.css": "^8.0.0",
     "popper.js": "^1.14.3"
   },
   "devDependencies": {
+    "babel-eslint": "^8.2.3",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-import-resolver-webpack": "^0.9.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-prettier": "^2.6.0",
+    "lint-staged": "^7.1.0",
+    "pre-commit": "^1.2.2",
+    "prettier": "^1.12.1",
+    "stylelint": "^9.2.0",
+    "stylelint-config-standard": "^18.2.0",
     "webpack-dev-server": "2.11.2"
   }
 }
