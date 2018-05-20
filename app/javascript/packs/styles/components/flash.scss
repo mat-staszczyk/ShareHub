@@ -1,0 +1,35 @@
+.alert {
+  margin: 1vh 0.5vw;
+
+  ul {
+    list-style-type: none;
+  }
+}
+
+.alert-error {
+  background-color: var(--flash-error-background);
+  border-color: var(--flash-error-border);
+  color: var(--flash-error-text);
+  text-align: left;
+}
+
+.alert-alert {
+  background-color: var(--flash-error-background);
+  border-color: var(--flash-error-border);
+  color: var(--flash-error-text);
+  text-align: left;
+}
+
+.alert-success {
+  background-color: var(--flash-success-background);
+  border-color: var(--flash-success-border);
+  color: var(--flash-success-text);
+  text-align: left;
+}
+
+.alert-notice {
+  background-color: var(--flash-success-background);
+  border-color: var(--flash-success-border);
+  color: var(--flash-success-text);
+  text-align: left;
+}
