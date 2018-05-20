@@ -7,6 +7,9 @@
     = csp_meta_tag
     = javascript_pack_tag 'application'
     = stylesheet_pack_tag 'application'
-  %body
+  %body.d-flex.flex-column
+    = render 'layouts/header'
     = render 'layouts/messages'
-    = yield
+    %main.container
+      = yield
+    = render 'layouts/footer'

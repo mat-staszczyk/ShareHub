@@ -1,0 +1,25 @@
+%nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+  = link_to 'ShareHub', root_path, class: 'navbar-brand'
+  %button.navbar-toggler{ aria: { controls: "navbarNavDropdown", expanded: "false", label: "Toggle navigation" }, 
+												  data: { target: "#navbarNavDropdown", toggle: "collapse" }, 
+                          type: "button" }
+    %span.navbar-toggler-icon
+  #navbarNavDropdown.collapse.navbar-collapse.navbar-right
+    %ul.navbar-nav.ml-md-auto
+      %li.nav-item.active
+        = link_to 'Home', root_path, class: 'nav-link'
+      %li.nav-item
+        = link_to 'Things', things_path, class: 'nav-link'
+      %li.nav-item.dropdown
+      - if user_signed_in?  
+        %a#navbarDropdownMenuLink.nav-link.dropdown-toggle{ aria: { expanded: 'false', haspopup: 'true' },
+                                                            data: { toggle: 'dropdown' }, 
+                                                            href: '#' }
+          = current_user.email 
+        .dropdown-menu.dropdown-menu-right{"aria-labelledby" => "navbarDropdownMenuLink"}
+          %li= link_to 'Edit profile', edit_user_registration_path, class: 'dropdown-item' 
+          %li= link_to 'Sign out', destroy_user_session_path, class: 'dropdown-item', method: :delete
+      - else
+        %li.nav-item
+          = link_to 'Sign in', new_user_session_path, role: 'button', class: 'btn btn-light'
+        
