@@ -1,0 +1,7 @@
+= simple_form_for(thing) do |f|
+  = f.error_notification
+  = f.input :name, label: 'Thing name', error: 'Thing name is mandatory, please specify one'
+  = f.input :visible, label: 'Visibility'
+  = f.input :description, input_html: { rows: 8 }
+  = f.error :base
+  = f.button :submit, class: 'btn-primary'
