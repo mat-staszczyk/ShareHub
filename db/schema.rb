@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_16_063333) do
+ActiveRecord::Schema.define(version: 2018_05_21_164946) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,22 @@ ActiveRecord::Schema.define(version: 2018_05_16_063333) do
     t.datetime "updated_at", null: false
     t.index ["borrower_id"], name: "index_things_on_borrower_id"
     t.index ["user_id"], name: "index_things_on_user_id"
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.string "name"
+    t.text "notes"
+    t.bigint "lender_id"
+    t.bigint "borrower_id"
+    t.bigint "thing_id"
+    t.datetime "borrowed_at"
+    t.datetime "returned_at"
+    t.datetime "return_planned_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["borrower_id"], name: "index_transactions_on_borrower_id"
+    t.index ["lender_id"], name: "index_transactions_on_lender_id"
+    t.index ["thing_id"], name: "index_transactions_on_thing_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -49,4 +65,5 @@ ActiveRecord::Schema.define(version: 2018_05_16_063333) do
   end
 
   add_foreign_key "things", "users"
+  add_foreign_key "transactions", "things"
 end
