@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2018_05_21_164946) do
     t.bigint "thing_id"
     t.datetime "borrowed_at"
     t.datetime "returned_at"
-    t.date "planned_return_on"
+    t.datetime "return_planned_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["borrower_id"], name: "index_transactions_on_borrower_id"

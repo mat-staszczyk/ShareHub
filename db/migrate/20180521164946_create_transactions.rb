@@ -8,7 +8,7 @@ class CreateTransactions < ActiveRecord::Migration[5.2]
       t.references :thing, foreign_key: true
       t.datetime :borrowed_at
       t.datetime :returned_at
-      t.date :planned_return_on
+      t.datetime :return_planned_at
 
       t.timestamps
     end

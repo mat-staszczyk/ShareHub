@@ -1,0 +1,9 @@
+= simple_form_for(transaction, as: :transaction, url: transactions_path) do |f|
+  = f.error_notification
+  = f.input :thing_id, collection: transaction.lendable_things 
+  = f.input :borrower_id, collection: transaction.borrowers, label_method: :first_name 
+  = f.input :borrowed_at, as: :datetime, html5: true
+  = f.input :return_planned_at, as: :datetime, html5: true
+  = f.input :notes, input_html: { rows: 8 }
+  = f.error :base
+  = f.button :submit, class: 'btn-primary'
