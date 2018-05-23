@@ -49,7 +49,7 @@ class LendingForm < FormObjectBase
   end
 
   def load_borrowers
-    @borrowers = Thing.where.not(id: @lender.id)
+    @borrowers = User.where.not(id: @lender.id).decorate
   end
 
   def persist!
