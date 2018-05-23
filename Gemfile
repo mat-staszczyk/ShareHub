@@ -5,6 +5,7 @@ ruby '2.5.1'
 
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'devise', '~> 4.4.3'
+gem 'draper', '~> 3.0.1'
 gem 'haml', '~> 5.0.4'
 gem 'haml-rails', '~> 1.0.0'
 gem 'jbuilder', '~> 2.5'
