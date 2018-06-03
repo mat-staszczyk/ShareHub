@@ -3,5 +3,7 @@
   = f.input :name, label: 'Thing name', error: 'Thing name is mandatory, please specify one'
   = f.input :visible, label: 'Visibility'
   = f.input :description, input_html: { rows: 8 }
+  = f.input :header_image, as: :file
+  = f.input :uploads, as: :file, input_html: { multiple: true }
   = f.error :base
   = f.button :submit, class: 'btn-primary'

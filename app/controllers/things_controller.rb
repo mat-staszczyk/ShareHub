@@ -5,6 +5,12 @@ class ThingsController < ApplicationController
     render locals: { things: things }
   end
 
+  def show
+    thing = Thing.find(params[:id])
+
+    render locals: { thing: thing }
+  end
+
   def new
     thing = current_user.things.new
 
@@ -24,6 +30,6 @@ class ThingsController < ApplicationController
   private
 
   def thing_params
-    params.require(:thing).permit(:name, :visible, :description)
+    params.require(:thing).permit(:name, :visible, :description, :header_image, uploads: [])
   end
 end

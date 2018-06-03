@@ -1,0 +1,13 @@
+%h1= thing.name
+
+= image_tag thing.header_image.variant(resize: '400x400', colorspace: :Gray) if thing.header_image.variable?
+
+%p= thing.description
+
+- thing.uploads.each do |upload|
+  - if upload.variable?
+    = link_to image_tag(upload.variant(resize: '200x200')), rails_blob_path(upload, disposition: :inline)
+  - elsif upload.previewable?
+    = link_to image_tag(upload.preview(resize: '200x200')), rails_blob_path(upload, disposition: :inline)
+  - else
+    = link_to "Download #{upload.filename}", rails_blob_path(upload, disposition: :attachment)
