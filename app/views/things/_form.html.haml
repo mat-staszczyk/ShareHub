@@ -4,6 +4,6 @@
   = f.input :visible, label: 'Visibility'
   = f.input :description, input_html: { rows: 8 }
   = f.input :header_image, as: :file
-  = f.input :uploads, as: :file, input_html: { multiple: true }
+  = f.input :uploads, as: :file, input_html: { multiple: true, direct_upload: true }
   = f.error :base
   = f.button :submit, class: 'btn-primary'
