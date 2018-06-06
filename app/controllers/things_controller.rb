@@ -6,7 +6,7 @@ class ThingsController < ApplicationController
   end
 
   def show
-    thing = Thing.find(params[:id])
+    thing = Thing.with_attached_uploads.find(params[:id])
 
     render locals: { thing: thing }
   end
@@ -21,7 +21,7 @@ class ThingsController < ApplicationController
     thing = current_user.things.new(thing_params)
 
     if thing.save
-      redirect_to root_path
+      redirect_to thing
     else
       render :new, locals: { thing: thing }
     end
