@@ -33,6 +33,8 @@ class LendingForm < FormObjectBase
 
   private
 
+  attr_reader :lender
+
   def date_range
     return if borrowed_at.nil? || return_planned_at.nil?
     if borrowed_at > return_planned_at
@@ -45,18 +47,18 @@ class LendingForm < FormObjectBase
   end
 
   def load_lendable_things
-    @lendable_things = @lender.things
+    @lendable_things = lender.things
   end
 
   def load_borrowers
-    @borrowers = User.where.not(id: @lender.id).decorate
+    @borrowers = User.where.not(id: lender.id).decorate
   end
 
   def persist!
     Transaction.transaction do
-      Transaction.create(
+      Transaction.create!(
         thing_id: thing_id,
-        lender_id: lender_id,
+        lender_id: lender.id,
         borrower_id: borrower_id,
         borrowed_at: borrowed_at,
         return_planned_at: return_planned_at,
