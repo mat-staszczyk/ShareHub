@@ -20,6 +20,7 @@
           %li= link_to 'Edit profile', edit_user_registration_path, class: 'dropdown-item' 
           %li= link_to 'Sign out', destroy_user_session_path, class: 'dropdown-item', method: :delete
         = link_to 'New thing', new_thing_path, role: 'button', class: 'btn btn-light'
+        = link_to 'Lend something', new_transaction_path, role: 'button', class: 'btn btn-light'
       - else
         %li.nav-item
           = link_to 'Sign in', new_user_session_path, role: 'button', class: 'btn btn-light'
