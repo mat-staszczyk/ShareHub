@@ -13,6 +13,7 @@ gem 'mini_magick', '~> 4.5.1'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
 gem 'rails', '~> 5.2.0'
+gem 'scenic', '~> 1.4.1'
 gem 'simple_form', '~> 4.0.1'
 gem 'webpacker'
 
