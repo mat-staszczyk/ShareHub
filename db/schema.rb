@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_03_120749) do
+ActiveRecord::Schema.define(version: 2018_06_11_154846) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,4 +87,22 @@ ActiveRecord::Schema.define(version: 2018_06_03_120749) do
 
   add_foreign_key "things", "users"
   add_foreign_key "transactions", "things"
+
+  create_view "expired_loans",  sql_definition: <<-SQL
+      SELECT transactions.id AS transaction_id,
+      transactions.lender_id,
+      lenders.email AS lender_email,
+      lenders.first_name AS lender_first_name,
+      transactions.borrower_id,
+      borrowers.first_name AS borrower_first_name,
+      borrowers.email AS borrower_email,
+      transactions.return_planned_at,
+      date_part('day'::text, age((('now'::text)::date)::timestamp without time zone, transactions.return_planned_at)) AS after_return_date
+     FROM (((transactions
+       JOIN things ON ((transactions.thing_id = things.id)))
+       JOIN users lenders ON ((transactions.lender_id = lenders.id)))
+       JOIN users borrowers ON ((transactions.borrower_id = borrowers.id)))
+    WHERE ((transactions.returned_at IS NULL) AND (transactions.return_planned_at <= now()));
+  SQL
+
 end
